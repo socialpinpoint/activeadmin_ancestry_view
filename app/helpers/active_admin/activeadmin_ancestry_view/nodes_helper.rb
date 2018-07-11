@@ -15,7 +15,7 @@ module ActiveAdmin
 
       def generate_panel_classes(resource)
         attributes = []
-        attributes << resource.path_ids if resource.ancestry
+        attributes << resource.ancestor_ids if resource.ancestry
         attributes << child_class(resource)
         attributes << CLASSES[:root] if resource.root?
         attributes.flatten.join(' ')

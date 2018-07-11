@@ -7,7 +7,7 @@ module Concerns
       # For expamle, .ordered_collection([2,1,3]) will return
       # relation with ids [2,1,3] against standart [1,2,3] order.
       def self.ordered_collection(ids)
-        order_clause = "CASE id "
+        order_clause = "CASE #{ name.downcase.pluralize }.id "
         ids.each_with_index do |id, index|
           order_clause << sanitize_sql_array(["WHEN ? THEN ? ", id, index])
         end

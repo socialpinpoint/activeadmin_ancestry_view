@@ -5,7 +5,8 @@ module ActiveadminAncestryView
       table: '{}',
       no_color: 'false',
       no_childless_link: 'false',
-      shift: '4'
+      shift: '4',
+      template_path: 'activeadmin_ancestry_view/main'
     }
 
     def call(opt = {}, &block)
@@ -14,7 +15,7 @@ module ActiveadminAncestryView
     private
 
     def render_partial(opt)
-      %{render partial: '#{template_path}', 
+      %{render partial: '#{opt[:template_path] || DEFAULT_OPTIONS[:template_path]}',
           locals: {
             resource: res,
             headers: #{opt[:headers] || DEFAULT_OPTIONS[:headers]}, 
@@ -24,10 +25,6 @@ module ActiveadminAncestryView
             shift_depth: #{opt[:shift_depth] || DEFAULT_OPTIONS[:shift] }
           }
         }
-    end
-
-    def template_path
-      'activeadmin_ancestry_view/main'
     end
   end
 end
